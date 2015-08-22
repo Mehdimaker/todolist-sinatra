@@ -1,0 +1,44 @@
+<h1>Liste des Taches</h1>
+
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+           <tr>
+            <th>#</th>
+            <th>Taches(date)</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            </tr>
+        </thead>
+            <% @data.each do |data| %>
+        <tbody>
+            <tr>
+                <td><%= data.id %></td>
+                <td><%= data.content %>(<%= data.created_at %>)</td>
+                <td>
+                <form method="get" action="/edit/<%=data.id%>">
+                    <button class="btn btn-info">edit</button>
+                </form>
+                </td>
+        <td> 
+            <form method="post" action="/delete">
+
+            <input type="hidden" name="id" value="<%=data.id%>"/>
+                <button type="submit" class="btn btn-danger">delete</button>
+            </form></td>
+            </tr>
+            
+
+            
+        </tbody>
+        <% end %>
+    </table>
+</div>
+
+<h2>Add task</h2>
+
+<form action="/" method="post" class="form-group">
+    <input class="form-control" type="text" name="content" placeholder="Enter your task">
+    <button class="btn btn-success" type="submit">Submit</button>    
+</form>
